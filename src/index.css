@@ -22,3 +22,14 @@ body {
 	min-width: 320px;
 	min-height: 100vh;
 }
+
+button {
+	border: 1px solid #d197ff;
+	padding: 0.6em 0;
+	width: 100px;
+	font-size: 1em;
+	font-weight: 500;
+	background-color: transparent;
+	color: white;
+	cursor: pointer;
+}

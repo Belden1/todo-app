@@ -1,9 +1,26 @@
 import Item from './Item';
+import './List.css';
+let hidden = true;
+
 const List = ({ todos, complete }) => {
-	if (todos.length === 0) {
+	if (todos.length > 0) {
+		hidden = false;
+	}
+
+	if (hidden) {
 		return (
 			<>
-				<div className="empty">All tasks completed!</div>
+				<div style={{ display: 'none' }} className="empty">
+					All tasks completed!
+				</div>
+			</>
+		);
+	} else if (todos.length === 0) {
+		return (
+			<>
+				<div style={{ display: 'block' }} className="empty">
+					All tasks completed!
+				</div>
 			</>
 		);
 	}
