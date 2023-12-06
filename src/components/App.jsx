@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import Input from './Input';
+import List from './List';
 
 function App() {
 	const [todo, setTodo] = useState('');
@@ -13,16 +14,17 @@ function App() {
 		}
 	};
 
+	const complete = (text) => {
+		const uncompletedTodos = todos.filter((todo) => todo !== text);
+		setTodos(uncompletedTodos);
+	};
+
 	return (
 		<>
 			<div className="App">
-				<img className="logo" src="/logo.png" alt="Techover Logo" />
+				<img className="logo" src="/logo.png" alt="Techover Logo" width={300} />
 				<Input setTodo={setTodo} todo={todo} addTodo={addTodo} />
-				<ul>
-					{todos.map((todo, index) => (
-						<li key={index}>{todo}</li>
-					))}
-				</ul>
+				<List todos={todos} complete={complete} />
 			</div>
 		</>
 	);
