@@ -2,7 +2,19 @@ import Item from './Item';
 import './List.css';
 let hidden = true;
 
-const List = ({ todos, complete }) => {
+const List = ({ todos, complete, loading }) => {
+	if (loading) {
+		return (
+			<>
+				<div className="todo-list">
+					{[1, 2, 3, 4, 5].map((todo, index) => (
+						<Item text={'Loading'} key={index} complete={complete} />
+					))}
+				</div>
+			</>
+		);
+	}
+
 	if (todos.length > 0) {
 		hidden = false;
 	}

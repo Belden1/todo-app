@@ -6,13 +6,17 @@ import List from './List';
 function App() {
 	const [todo, setTodo] = useState('');
 	const [todos, setTodos] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		fetch('https://jsonplaceholder.typicode.com/todos')
 			.then((res) => res.json())
 			.then((data) => {
 				const incompletedTodos = data.filter((todo) => !todo.completed).map((todo) => todo.title);
-				setTodos(incompletedTodos);
+				setTimeout(() => {
+					setTodos(incompletedTodos);
+					setLoading(false);
+				}, 500);
 			});
 	}, []);
 
@@ -33,7 +37,7 @@ function App() {
 			<div className="App">
 				<img className="logo" src="/logo.png" alt="Techover Logo" width={300} />
 				<Input setTodo={setTodo} todo={todo} addTodo={addTodo} />
-				<List todos={todos} complete={complete} />
+				<List todos={todos} complete={complete} loading={loading} />
 			</div>
 		</>
 	);
