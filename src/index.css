@@ -1,35 +1,35 @@
 :root {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	line-height: 1.5;
-	font-weight: 400;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
 
-	color: white;
-	background-color: #1d1d1d;
+  color: white;
+  background-color: #1d1d1d;
 
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-	margin: 0;
-	padding-top: 40px;
-	min-width: 320px;
-	min-height: 100vh;
+  margin: 0;
+  padding-top: 40px;
+  min-width: 320px;
+  min-height: 100vh;
 }
 
 button {
-	border: 1px solid #d197ff;
-	padding: 0.6em 0;
-	width: 100px;
-	font-size: 1em;
-	font-weight: 500;
-	background-color: transparent;
-	color: white;
-	cursor: pointer;
+  border: 1px solid #d197ff;
+  padding: 0.6em 0;
+  width: 100px;
+  font-size: 1em;
+  font-weight: 500;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
 }
