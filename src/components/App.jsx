@@ -6,17 +6,17 @@ import List from './List';
 function App() {
   const [todo, setTodo] = useState('');
   const [todos, setTodos] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetch('https://jsonplaceholder.typicode.com/todos');
       const jsonData = await data.json();
       const incompletedTodos = jsonData.filter((todo) => !todo.completed).map((todo) => todo.title);
-      setTimeout(() => {
-        setTodos(incompletedTodos);
-        setLoading(false);
-      }, 500);
+      // setTimeout(() => {
+      // setTodos(incompletedTodos);
+      setLoading(false);
+      // }, 500);
     };
 
     fetchData();
