@@ -9,15 +9,17 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/todos')
-      .then((res) => res.json())
-      .then((data) => {
-        const incompletedTodos = data.filter((todo) => !todo.completed).map((todo) => todo.title);
-        setTimeout(() => {
-          setTodos(incompletedTodos);
-          setLoading(false);
-        }, 500);
-      });
+    const fetchData = async () => {
+      const data = await fetch('https://jsonplaceholder.typicode.com/todos');
+      const jsonData = await data.json();
+      const incompletedTodos = jsonData.filter((todo) => !todo.completed).map((todo) => todo.title);
+      setTimeout(() => {
+        setTodos(incompletedTodos);
+        setLoading(false);
+      }, 500);
+    };
+
+    fetchData();
   }, []);
 
   const addTodo = () => {
