@@ -3,34 +3,42 @@ import './App.css';
 import Input from './Input';
 import List from './List';
 
-function App() {
-  const [todo, setTodo] = useState('');
-  const [todos, setTodos] = useState([]);
-  const [loading, setLoading] = useState(false);
+interface Todo {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+}
+
+function App(): JSX.Element {
+  const [todo, setTodo] = useState<string>('');
+  const [todos, setTodos] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       const data = await fetch('https://jsonplaceholder.typicode.com/todos');
-      const jsonData = await data.json();
-      const incompletedTodos = jsonData.filter((todo) => !todo.completed).map((todo) => todo.title);
-      // setTimeout(() => {
-      // setTodos(incompletedTodos);
-      setLoading(false);
-      // }, 500);
+      const jsonData: Todo[] = await data.json();
+      const incompletedTodos: string[] = jsonData.filter((todo) => !todo.completed).map((todo) => todo.title);
+      setTimeout(() => {
+        setTodos(incompletedTodos);
+        setLoading(false);
+      }, 500);
     };
 
     fetchData();
   }, []);
 
   const addTodo = () => {
-    if (todo !== '') {
+    if (todo.trim() !== '') {
       setTodos([...todos, todo]);
       setTodo('');
     }
   };
 
-  const complete = (text) => {
-    const uncompletedTodos = todos.filter((todo) => todo !== text);
+  const complete = (text: string) => {
+    const uncompletedTodos: string[] = todos.filter((todo) => todo !== text);
     setTodos(uncompletedTodos);
   };
 
