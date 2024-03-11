@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import Input from './Input';
-import List from './List';
+import Input from './components/Input';
+import List from './components/List';
 
-interface Todo {
+type Todo = {
   userId: number;
   id: number;
   title: string;
   completed: boolean;
-}
+};
 
-function App(): JSX.Element {
+export default function App() {
   const [todo, setTodo] = useState<string>('');
   const [todos, setTodos] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -31,26 +31,22 @@ function App(): JSX.Element {
   }, []);
 
   const addTodo = () => {
-    if (todo.trim() !== '') {
+    if (todo !== '') {
       setTodos([...todos, todo]);
       setTodo('');
     }
   };
 
   const complete = (text: string) => {
-    const uncompletedTodos: string[] = todos.filter((todo) => todo !== text);
+    const uncompletedTodos = todos.filter((todo) => todo !== text);
     setTodos(uncompletedTodos);
   };
 
   return (
-    <>
-      <div className="App">
-        <img className="logo" src="/logo.png" alt="Techover Logo" width={300} />
-        <Input setTodo={setTodo} todo={todo} addTodo={addTodo} />
-        <List todos={todos} complete={complete} loading={loading} />
-      </div>
-    </>
+    <div className="App">
+      <img className="logo" src="/logo.png" alt="Techover Logo" width={300} />
+      <Input setTodo={setTodo} todo={todo} addTodo={addTodo} />
+      <List todos={todos} complete={complete} loading={loading} />
+    </div>
   );
 }
-
-export default App;
