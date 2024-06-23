@@ -12,7 +12,7 @@ type Todo = {
 
 export default function App() {
   const [todo, setTodo] = useState<string>('');
-  const [todos, setTodos] = useState<string[]>([]);
+  const [todos, setTodos] = useState<string[] | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [loadFromAPI, setLoadFromAPI] = useState<boolean>(false);
 
@@ -30,18 +30,20 @@ export default function App() {
       };
 
       fetchData();
+    } else {
+      setTodos(null);
     }
   }, [loadFromAPI]);
 
   const addTodo = () => {
     if (todo !== '') {
-      setTodos([...todos, todo]);
+      setTodos((prevTodos) => (prevTodos ? [...prevTodos, todo] : [todo]));
       setTodo('');
     }
   };
 
   const complete = (text: string) => {
-    const uncompletedTodos = todos.filter((todo) => todo !== text);
+    const uncompletedTodos = todos?.filter((todo) => todo !== text) || [];
     setTodos(uncompletedTodos);
   };
 

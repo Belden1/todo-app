@@ -3,13 +3,17 @@ import Item from './Item';
 import './List.css';
 
 interface ListProps {
-  todos: string[];
+  todos: string[] | null;
   complete: (text: string) => void;
   loading: boolean;
 }
 
 const List: React.FC<ListProps> = ({ todos, complete, loading }) => {
-  const hasTodos = todos.length > 0;
+  const hasTodos = todos && todos.length > 0;
+
+  if (todos === null) {
+    return null;
+  }
 
   return (
     <div className="todo-list">
